@@ -1,37 +1,62 @@
-package com.dut2.devmobg2_010221;
+package com.dut2.projetappmobile;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
-
-import java.util.ArrayList;
-import java.util.List;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
-    private RecyclerView monRecyclerView;
-    private List<Utilisateur> desUtilisateurs;
-    private UtilisateurAdapteur monUtilisateurAdapter;
+    private Button leSecondBouton;
+    EditText id_email;
+    ImageView Img;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        monRecyclerView=findViewById(R.id.id_mon_recyclerview);
+        id_email=findViewById(R.id.id_email);
+        leSecondBouton = findViewById(R.id.id_secondbouton);
 
-        desUtilisateurs=new ArrayList<>();
+        leSecondBouton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                Intent intent = new Intent(MainActivity.this,MainActivity2.class);
 
-        desUtilisateurs.add(new Utilisateur("A","B"));
-        desUtilisateurs.add(new Utilisateur("A","B"));
-        desUtilisateurs.add(new Utilisateur("A","B"));
-        desUtilisateurs.add(new Utilisateur("A","B"));
-        desUtilisateurs.add(new Utilisateur("A","B"));
+                Bundle bundle = new Bundle();
+                bundle.putString("email", id_email.getText().toString());
+                bundle.putInt("img", R.id.Img);
+                intent.putExtras(bundle);
+                startActivity(intent);
+                startActivityForResult(intent, 1000);
+            }
+        });
+    }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data){
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == 1000) {
+            if(resultCode == Activity.RESULT_OK) {
+                if (data.hasExtra("msg1")) {
+                    Toast.makeText(getApplicationContext(), "MSG1 :" + data.getExtras().getString("msg1"), Toast.LENGTH_LONG).show();
+                }
+            }
+            if(resultCode == Activity.RESULT_CANCELED){
+                if(data.hasExtra("msg2")) {
+                    Toast.makeText(getApplicationContext(),"MSG2 :"+data.getExtras().getString("msg2"),Toast.LENGTH_LONG).show();
+                }
 
-        monUtilisateurAdapter=new UtilisateurAdapteur(desUtilisateurs);
-        monRecyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
-        monRecyclerView.setAdapter(monUtilisateurAdapter);
+            }
+        }
+
     }
 }
