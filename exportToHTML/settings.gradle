@@ -1,2 +1,0 @@
-include ':app'
-rootProject.name = "DevMobG2_010221"
