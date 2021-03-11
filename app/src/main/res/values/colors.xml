@@ -7,4 +7,9 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <!-- Button color. -->
+    <color name="btnVert">#66bb6a</color>
+    <color name="btnJaune">#ffee58</color>
+    <color name="btnRouge">#ef5350</color>
 </resources>

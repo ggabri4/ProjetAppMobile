@@ -9,13 +9,18 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.Random;
 
 public class MainActivity2 extends AppCompatActivity {
-    TextView text;
-    ImageView img;
-    Button change;
+
+    private ImageView bluebutton;
+    private ImageView redbutton;
+    private ImageView greenbutton;
+    private ImageView orangebutton;
+    private Button beginbutton;
+
 
 
 
@@ -24,24 +29,24 @@ public class MainActivity2 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
 
-        text=findViewById(R.id.TextNom);
-        change=findViewById(R.id.buttonColor);
-        img = findViewById(R.id.ImageProfil);
+        bluebutton = findViewById(R.id.blue_button);
+        redbutton = findViewById(R.id.red_button);
+        greenbutton = findViewById(R.id.green_button);
+        orangebutton = findViewById(R.id.orange_button);
 
-        Intent intent= getIntent();
-        Bundle bundle=intent.getExtras();
+        //beginbutton.setOnClickListener(new View.OnClickListener(){
+        //    @Override
+        //    public void onClick(View v) {
+//
+        //        Random numbutton = new Random(4);
+        //        Toast toast= Toast.makeText(MainActivity2.this,"c'est une notification", Toast.LENGTH_LONG);
+        //        toast.show();
+//
+        //        //for(){}
+        //    }
+        //});
 
-        String email=bundle.getString("email");
-        int img2= bundle.getInt("img");
 
-        text.setText("Vous avez :"+email);
-        img.setImageResource(img2);
     }
-    public void changeColor(View view){
-        Random rand = new Random();
 
-
-
-
-    }
 }

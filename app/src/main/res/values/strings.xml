@@ -6,4 +6,11 @@
     values-round/strings.xml for round devices.
     -->
     <string name="hello_world">Hello Square World!</string>
+    <string name="facile">Facile</string>
+    <string name="difficile">Difficile</string>
+    <string name="expert">Expert</string>
+    <string name="tableau_des_scores">Tableau des scores</string>
+    <string name="regle">Règle</string>
+    <string name="titreeeeeee">TITREEEEEEE</string>
+    <string name="begin_button">Démarrer</string>
 </resources>
