@@ -13,4 +13,14 @@
     <string name="regle">Règle</string>
     <string name="nom_jeux">COLOR MEMORY</string>
     <string name="begin_button">Démarrer</string>
+    <string name="nom">Nom</string>
+    <string name="prenom">Prénom</string>
+    <string name="inscription">Inscription</string>
+    <string name="name">Name</string>
+    <string name="date_de_naissance">Date de naissance</string>
+    <string name="sexe">Sexe</string>
+    <string name="masculin">Masculin</string>
+    <string name="feminin">Féminin</string>
+    <string name="mot_de_passe">Mot de passe</string>
+    <string name="adresse_mail">Adresse Mail</string>
 </resources>
