@@ -14,6 +14,25 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
+    private Button buttonfacile;
 
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        buttonfacile = (Button) findViewById(R.id.button_facile);
+        //CLICK DU BOUTON FACILE
+        buttonfacile.setOnClickListener(new View.OnClickListener(){
+                @Override
+                public void onClick(View v) {
+
+                    Intent ActivityJeux = new Intent(MainActivity.this, MainActivity2.class);
+                    startActivity(ActivityJeux);
+                }
+            });
+
+    }
 
 }
