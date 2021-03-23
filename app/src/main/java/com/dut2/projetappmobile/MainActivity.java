@@ -32,7 +32,36 @@ public class MainActivity extends AppCompatActivity {
                     startActivity(ActivityJeux);
                 }
             });
-
     }
+    EditText name,email,password;
+    Button send;
+    SQLiteHelper db;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        name= findViewById(R.id.nom);
+        password=findViewById(R.id.password);
+        email=findViewById(R.id.email);
+        send=findViewById(R.id.send);
+
+        db=new  SQLiteHelper(getApplicationContext());
+
+        send.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (db.addGamer(name.getText().toString(),email.getText().toString(),password.getText().toString(),0)){
+                    Intent intent = new Intent(MainActivity.this, MainActivity.class);
+                    startActivity(intent);
+                }
+                else {
+                    Toast.makeText(MainActivity.this, "Erreur d'insertion!", Toast.LENGTH_SHORT).show();
+                }
+        });
+    }
+
+
+
 
 }
