@@ -28,4 +28,5 @@
     <string name="connection">Connection</string>
     <string name="btninscrire">S\'inscrire</string>
     <string name="return_connect">Retour à la connection</string>
+    <string name="jouer_sans_se_connecter">Jouer sans se connecter</string>
 </resources>

@@ -22,28 +22,29 @@ public class Connection extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.inscription_main);
+        setContentView(R.layout.connection_main);
 
-        email=findViewById(R.id.email);
-        pass=findViewById(R.id.password);
-        connect=findViewById(R.id.connection);
-        inscription=findViewById(R.id.inscription);
+        email=findViewById(R.id.editTextTextEmailAddress);
+        pass=findViewById(R.id.editTextTextPassword);
+        connect= findViewById(R.id.connection);
+        inscription= findViewById(R.id.inscription);
+        db= new SQLiteHelper(getApplicationContext());
 
         connect.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(db.connection(email.getText().toString(),pass.getText().toString())){
-                Intent intent = new Intent(Connection.this, MainActivity.class);
-                startActivity(intent);
-            }
-                else {
-                    Toast.makeText(Connection.this,"Login ou Mot de passe Incorrect",Toast.LENGTH_SHORT).show();
+                if (db.connection(email.getText().toString(), pass.getText().toString())) {
+                    Intent intent = new Intent(Connection.this, Inscription.class);
+                    startActivity(intent);
+                } else {
+                    Toast.makeText(Connection.this, "Login ou Mot de passe Incorrect", Toast.LENGTH_SHORT).show();
                 }
+            }
         });
 
         inscription.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(View v) {
                 Intent intent = new Intent(Connection.this, MainActivity.class);
                 startActivity(intent);
             }
