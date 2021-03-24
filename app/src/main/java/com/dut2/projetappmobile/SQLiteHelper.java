@@ -18,7 +18,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         String sql=
-                "CREATE TABLE " + FeedEntry.TABLE_NAME + " (" +
+                "CREATE TABLE " + TABLE_NAME + " (" +
                         ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
                         NAME + " TEXT," +
                         PASSWORD + " TEXT," +

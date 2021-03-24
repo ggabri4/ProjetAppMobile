@@ -2,6 +2,10 @@ package com.dut2.projetappmobile;
 
 
 import android.graphics.Color;
+import android.graphics.ColorFilter;
+import android.graphics.ColorMatrix;
+import android.graphics.ColorMatrixColorFilter;
+import android.graphics.Matrix;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.os.Handler;
@@ -27,6 +31,8 @@ public class GameActivity extends AppCompatActivity {
     private ImageView redbutton;
     private ImageView greenbutton;
     private ImageView orangebutton;
+    private ImageView uncoeur;
+    private ImageView deuxcoeur;
     private Button beginbutton;
     private String sequence;
 
@@ -49,6 +55,8 @@ public class GameActivity extends AppCompatActivity {
         greenbutton = findViewById(R.id.green_button);
         orangebutton = findViewById(R.id.orange_button);
         beginbutton = (Button) findViewById(R.id.begin_button);
+        uncoeur = findViewById(R.id.un_coeur);
+        deuxcoeur = findViewById(R.id.deux_coeur);
 
 
         String chars = "1234";
@@ -70,6 +78,8 @@ public class GameActivity extends AppCompatActivity {
                 boolean error=false;
                 click=false;
                 vie=0;
+                uncoeur.clearColorFilter();
+                deuxcoeur.clearColorFilter();
 
                 gametext.setText("Retiens bien l'ordre d'allumage !");
 
@@ -94,7 +104,9 @@ public class GameActivity extends AppCompatActivity {
     }
     //---------------------Fonction--et--procédure------------------------------
     private void CkeckColor(int i){
-
+        ColorMatrix cm = new ColorMatrix();
+        cm.setSaturation(0);
+        final ColorFilter filter = new ColorMatrixColorFilter(cm);
 
         ButtonListener();
         if(i>nbtour-1)
@@ -112,7 +124,10 @@ public class GameActivity extends AppCompatActivity {
             if(i==nbtour-1)
                 gametext.setText("\t\t\t\t\t\t\t\tTu as gagné !"+"\n\nClique sur démarrer pour rejouer.");
             else
+             {
                 gametext.setText("Bien joué ! Continues");
+                incr++;
+             }
         }
         else if (click && vie<2)
         {
@@ -125,8 +140,12 @@ public class GameActivity extends AppCompatActivity {
             if(vie==2)
             {
                 gametext.setText("\t\t\t\t\t\t\t\tTu as perdu."+"\n\nClique sur démarrer pour rejouer.");
+                deuxcoeur.setColorFilter(filter);
             }else
+            {
                 gametext.setText("Raté ! -"+vie+" vie");
+                uncoeur.setColorFilter(filter);
+            }
         }
         else {System.out.println("pas clické");}
 
@@ -142,7 +161,6 @@ public class GameActivity extends AppCompatActivity {
                 click=true;
                 ButtonClick(greenbutton);
                 CkeckColor(incr);
-                incr++;
             }});
         redbutton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -151,7 +169,6 @@ public class GameActivity extends AppCompatActivity {
                 click=true;
                 ButtonClick(redbutton);
                 CkeckColor(incr);
-                incr++;
             }});
         orangebutton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -160,7 +177,6 @@ public class GameActivity extends AppCompatActivity {
                 click=true;
                 ButtonClick(orangebutton);
                 CkeckColor(incr);
-                incr++;
             }});
         bluebutton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -169,7 +185,6 @@ public class GameActivity extends AppCompatActivity {
                 click=true;
                 ButtonClick(bluebutton);
                 CkeckColor(incr);
-                incr++;
             }});
         //}
     }
