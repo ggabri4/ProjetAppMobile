@@ -35,4 +35,6 @@
     <string name="allumage">"Retiens bien l'ordre d'allumage !"</string>
     <string name="jouer">"A toi de jouer !"</string>
     <string name="bienjoué">"Bien joué ! Continues"</string>
+    <string name="demarrer">"Clique sur Démarrer pour lancer !"</string>
+    <string name="coeur">coeur</string>
 </resources>

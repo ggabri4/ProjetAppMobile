@@ -14,9 +14,6 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Button buttonfacile;
-    private Button buttondifficile;
-    private Button buttonexpert;
     private double mode;
 
 
@@ -25,41 +22,32 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        buttonfacile = (Button) findViewById(R.id.button_facile);
-        buttondifficile = (Button) findViewById(R.id.button_difficile);
-        buttonexpert = (Button) findViewById(R.id.button_expert);
+        Button buttonfacile = (Button) findViewById(R.id.button_facile);
+        Button buttondifficile = (Button) findViewById(R.id.button_difficile);
+        Button buttonexpert = (Button) findViewById(R.id.button_expert);
 
         //CLICK DU BOUTON FACILE
-        buttonfacile.setOnClickListener(new View.OnClickListener(){
-                @Override
-                public void onClick(View v) {
-                    mode = 1;
-                    Intent ActivityJeux = new Intent(MainActivity.this, GameActivity.class);
-                    ActivityJeux.putExtra("valmode", mode);
-                    startActivity(ActivityJeux);
-                }
-            });
+        buttonfacile.setOnClickListener(v -> {
+            mode = 1;
+            Intent ActivityJeux = new Intent(MainActivity.this, GameActivity.class);
+            ActivityJeux.putExtra("valmode", mode);
+            startActivity(ActivityJeux);
+        });
 
         //CLICK DU BOUTON DIFFICILE
-        buttondifficile.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                mode = 1.5;
-                Intent ActivityJeux = new Intent(MainActivity.this, GameActivity.class);
-                ActivityJeux.putExtra("valmode", mode);
-                startActivity(ActivityJeux);
-            }
+        buttondifficile.setOnClickListener(v -> {
+            mode = 1.5;
+            Intent ActivityJeux = new Intent(MainActivity.this, GameActivity.class);
+            ActivityJeux.putExtra("valmode", mode);
+            startActivity(ActivityJeux);
         });
 
         //CLICK DU BOUTON EXPERT
-        buttonexpert.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                mode = 3;
-                Intent ActivityJeux = new Intent(MainActivity.this, GameActivity.class);
-                ActivityJeux.putExtra("valmode", mode);
-                startActivity(ActivityJeux);
-            }
+        buttonexpert.setOnClickListener(v -> {
+            mode = 3;
+            Intent ActivityJeux = new Intent(MainActivity.this, GameActivity.class);
+            ActivityJeux.putExtra("valmode", mode);
+            startActivity(ActivityJeux);
         });
     }
 }

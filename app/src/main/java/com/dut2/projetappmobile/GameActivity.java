@@ -34,7 +34,6 @@ public class GameActivity extends AppCompatActivity {
     private ImageView orangebutton;
     private ImageView uncoeur;
     private ImageView deuxcoeur;
-    private Button beginbutton;
     private String sequence;
 
     private int nbtour=3;
@@ -46,7 +45,6 @@ public class GameActivity extends AppCompatActivity {
     private int etape=0;
     private double score=0;
     private double mode=1.0;
-
 
 
     @Override
@@ -61,60 +59,57 @@ public class GameActivity extends AppCompatActivity {
         redbutton = findViewById(R.id.red_button);
         greenbutton = findViewById(R.id.green_button);
         orangebutton = findViewById(R.id.orange_button);
-        beginbutton = (Button) findViewById(R.id.begin_button);
+        Button beginbutton = (Button) findViewById(R.id.begin_button);
         uncoeur = findViewById(R.id.un_coeur);
         deuxcoeur = findViewById(R.id.deux_coeur);
 
         //Initialisation debut page
         viemax=2;
-        gametext.setText("Clique sur Démarrer pour lancer !");
-        scoretext.setText("score : "+score);
+        gametext.setText(R.string.demarrer);
+        String affichage = "score : "+score;
+        scoretext.setText(affichage);
 
-        beginbutton.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
+        beginbutton.setOnClickListener(v -> {
 
-                //Initialisation clique bouton
-                ImageView nombouton;
-                boolean error=false;
-                click=false;
-                vie=0;
-                incr=0;
-                val=0;
-                score=0;
-                uncoeur.clearColorFilter();
-                deuxcoeur.clearColorFilter();
-                if(mode==1.0)
-                {
-                    etape=0;
-                    nbtour = 10;
-                }
-                else if(mode==1.5)
-                {
-                    etape=2;
-                    nbtour = 15;
-                }
-                else if(mode==3.0)
-                {
-                    etape=4;
-                    nbtour=20;
-                }
-                String chars = "1234";
-                sequence = "";
-                for(int x=0;x<nbtour+1;x++)//+1 pour éviter le out of range
-                {
-                    int i =  (int)(Math.random() * ((3) + 1));
-                    sequence += chars.charAt(i);
-                }
-                System.out.println(sequence);
-
-                ControleSequence(etape);
-                CkeckColor();
-                System.out.println("mode :" + mode);
-                System.out.println("Fin");
+            //Initialisation clique bouton
+            ImageView nombouton;
+            boolean error=false;
+            click=false;
+            vie=0;
+            incr=0;
+            val=0;
+            score=0;
+            uncoeur.clearColorFilter();
+            deuxcoeur.clearColorFilter();
+            if(mode==1.0)
+            {
+                etape=0;
+                nbtour = 10;
             }
-        });
+            else if(mode==1.5)
+            {
+                etape=2;
+                nbtour = 15;
+            }
+            else if(mode==3.0)
+            {
+                etape=4;
+                nbtour=20;
+            }
+            String chars = "1234";//chiffres qui rempliront la séquence
+            sequence = "";
+            for(int x=0;x<nbtour+1;x++)//+1 pour éviter le out of range
+            {
+                int i =  (int)(Math.random() * ((3) + 1));
+                sequence += chars.charAt(i);//créé la séquence aléatoirement
+            }
+            System.out.println(sequence);//l'affiche
 
+            ControleSequence(etape);
+            CkeckColor();
+            System.out.println("mode :" + mode);
+            System.out.println("Fin");
+        });
 
     }
     //---------------------Fonction--et--procédure------------------------------
@@ -150,7 +145,8 @@ public class GameActivity extends AppCompatActivity {
                     ControleSequence(etape);
                     System.out.println("etape++");
                     score = (etape+1)*mode;//* mode <----------------------------------------------------------------------------------------------------
-                    scoretext.setText("score : "+score);
+                    String affichage = "score : "+score;
+                    scoretext.setText(affichage);
                 }else if(etape<nbtour) {
                     incr++;
                     System.out.println("incr++");
@@ -188,38 +184,30 @@ public class GameActivity extends AppCompatActivity {
 
     private void ButtonListener() {
 
-        greenbutton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                val = '1';
-                click=true;
-                ButtonClick(greenbutton);
-                CkeckColor();
-            }});
-        redbutton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                val = '2';
-                click=true;
-                ButtonClick(redbutton);
-                CkeckColor();
-            }});
-        orangebutton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                val = '3';
-                click=true;
-                ButtonClick(orangebutton);
-                CkeckColor();
-            }});
-        bluebutton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                val = '4';
-                click=true;
-                ButtonClick(bluebutton);
-                CkeckColor();
-            }});
+        greenbutton.setOnClickListener(view -> {
+            val = '1';
+            click=true;
+            ButtonClick(greenbutton);
+            CkeckColor();
+        });
+        redbutton.setOnClickListener(view -> {
+            val = '2';
+            click=true;
+            ButtonClick(redbutton);
+            CkeckColor();
+        });
+        orangebutton.setOnClickListener(view -> {
+            val = '3';
+            click=true;
+            ButtonClick(orangebutton);
+            CkeckColor();
+        });
+        bluebutton.setOnClickListener(view -> {
+            val = '4';
+            click=true;
+            ButtonClick(bluebutton);
+            CkeckColor();
+        });
     }
 
     private void ControleSequence(int j){
@@ -228,23 +216,14 @@ public class GameActivity extends AppCompatActivity {
         for (int i=0;i<j+1;i++)
         {
             int finalI = i;
-            handler.postDelayed(new Runnable(){
-                @Override
-                public void run(){
-                    handler.postDelayed(new Runnable(){
-                        @Override
-                        public void run(){
-                            Visibility(finalI, 150);
-                        }
-                    },(finalI)*1000);
-                    handler.postDelayed(new Runnable(){
-                        @Override
-                        public void run(){
-                            Visibility(finalI, 255);
-                            if(finalI ==etape)gametext.setText(R.string.jouer);
-                        }
-                    },(finalI +1)*1000);
-                }
+            handler.postDelayed(() -> {
+                handler.postDelayed(() -> Visibility(finalI, 150),(finalI)*1000);
+                //Appel de la fonction qui change l'alpha 2 fois pour enlever puis remettre
+                handler.postDelayed(() -> {
+                    Visibility(finalI, 255);
+                    if(finalI ==etape)gametext.setText(R.string.jouer);
+                },(finalI +1)*1000);
+
             },(i+1)*1000+100);
         }
     }
@@ -272,23 +251,7 @@ public class GameActivity extends AppCompatActivity {
 
     private void ButtonClick(ImageView image) {
         final ImageView b = image;
-        b.postDelayed(new Runnable() {
-
-            @Override
-
-            public void run() {
-                b.setImageAlpha(150);
-            }
-
-        }, 0);
-        b.postDelayed(new Runnable() {
-
-            @Override
-
-            public void run() {
-                b.setImageAlpha(255);
-            }
-
-        }, 300);
+        b.postDelayed(() -> b.setImageAlpha(150), 0);
+        b.postDelayed(() -> b.setImageAlpha(255), 300);
     }
 }
