@@ -27,6 +27,7 @@ import java.util.TimerTask;
 public class GameActivity extends AppCompatActivity {
 
     private TextView gametext;
+    private TextView scoretext;
     private ImageView bluebutton;
     private ImageView redbutton;
     private ImageView greenbutton;
@@ -43,6 +44,7 @@ public class GameActivity extends AppCompatActivity {
     private int vie=0;
     private int viemax;
     private int etape=0;
+    private int score=0;
 
 
 
@@ -52,6 +54,7 @@ public class GameActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main2);
 
         gametext = findViewById(R.id.game_text);
+        scoretext = findViewById(R.id.score_text);
         bluebutton = findViewById(R.id.blue_button);
         redbutton = findViewById(R.id.red_button);
         greenbutton = findViewById(R.id.green_button);
@@ -71,6 +74,7 @@ public class GameActivity extends AppCompatActivity {
         System.out.println(sequence);
         viemax=2;
         gametext.setText("Clique sur Démarrer pour lancer !");
+        scoretext.setText("score : "+score);
 
         beginbutton.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -84,6 +88,7 @@ public class GameActivity extends AppCompatActivity {
                 incr=0;
                 etape=0;
                 val=0;
+                score=0;
                 uncoeur.clearColorFilter();
                 deuxcoeur.clearColorFilter();
 
@@ -127,6 +132,8 @@ public class GameActivity extends AppCompatActivity {
                     etape++;
                     ControleSequence(etape);
                     System.out.println("etape++");
+                    score = (etape+1);//* mode <----------------------------------------------------------------------------------------------------
+                    scoretext.setText("score : "+score);
                 }else if(etape<nbtour) {
                     incr++;
                     System.out.println("incr++");
