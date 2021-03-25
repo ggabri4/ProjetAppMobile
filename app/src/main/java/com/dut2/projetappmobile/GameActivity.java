@@ -44,7 +44,8 @@ public class GameActivity extends AppCompatActivity {
     private int vie=0;
     private int viemax;
     private int etape=0;
-    private int score=0;
+    private double score=0;
+    private double mode=1.0;
 
 
 
@@ -52,6 +53,7 @@ public class GameActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
+        mode = (double) getIntent().getSerializableExtra("valmode");
 
         gametext = findViewById(R.id.game_text);
         scoretext = findViewById(R.id.score_text);
@@ -64,14 +66,6 @@ public class GameActivity extends AppCompatActivity {
         deuxcoeur = findViewById(R.id.deux_coeur);
 
         //Initialisation debut page
-        String chars = "1234";
-        sequence = "";
-        for(int x=0;x<nbtour+1;x++)//+1 pour éviter le out of range
-        {
-            int i =  (int)(Math.random() * ((3) + 1));
-            sequence += chars.charAt(i);
-        }
-        System.out.println(sequence);
         viemax=2;
         gametext.setText("Clique sur Démarrer pour lancer !");
         scoretext.setText("score : "+score);
@@ -86,15 +80,36 @@ public class GameActivity extends AppCompatActivity {
                 click=false;
                 vie=0;
                 incr=0;
-                etape=0;
                 val=0;
                 score=0;
                 uncoeur.clearColorFilter();
                 deuxcoeur.clearColorFilter();
+                if(mode==1.0)
+                {
+                    nbtour = 10;
+                }
+                else if(mode==1.5)
+                {
+                    etape=2;
+                    nbtour = 15;
+                }
+                else if(mode==3.0)
+                {
+                    etape=5;
+                    nbtour=20;
+                }
+                String chars = "1234";
+                sequence = "";
+                for(int x=0;x<nbtour+1;x++)//+1 pour éviter le out of range
+                {
+                    int i =  (int)(Math.random() * ((3) + 1));
+                    sequence += chars.charAt(i);
+                }
+                System.out.println(sequence);
 
-                ControleSequence(0);
+                ControleSequence(etape);
                 CkeckColor();
-
+                System.out.println("mode :" + mode);
                 System.out.println("Fin");
             }
         });
@@ -108,7 +123,8 @@ public class GameActivity extends AppCompatActivity {
         final ColorFilter filter = new ColorMatrixColorFilter(cm);
 
         ButtonListener();
-        if(etape>=nbtour-1 && incr==etape && etape!=0)
+        if(vie>=viemax)gametext.setText(R.string.perdre);
+        else if(etape>=nbtour-1 && incr==etape && etape!=0)
         {
             if(vie<viemax)
                 gametext.setText(R.string.gagner);
@@ -132,7 +148,7 @@ public class GameActivity extends AppCompatActivity {
                     etape++;
                     ControleSequence(etape);
                     System.out.println("etape++");
-                    score = (etape+1);//* mode <----------------------------------------------------------------------------------------------------
+                    score = (etape+1)*mode;//* mode <----------------------------------------------------------------------------------------------------
                     scoretext.setText("score : "+score);
                 }else if(etape<nbtour) {
                     incr++;
@@ -170,8 +186,7 @@ public class GameActivity extends AppCompatActivity {
     }
 
     private void ButtonListener() {
-        //if(!click){
-        //System.out.println("test");
+
         greenbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -204,7 +219,6 @@ public class GameActivity extends AppCompatActivity {
                 ButtonClick(bluebutton);
                 CkeckColor();
             }});
-        //}
     }
 
     private void ControleSequence(int j){

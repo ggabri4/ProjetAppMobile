@@ -15,6 +15,9 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity {
 
     private Button buttonfacile;
+    private Button buttondifficile;
+    private Button buttonexpert;
+    private double mode;
 
 
     @Override
@@ -23,14 +26,40 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         buttonfacile = (Button) findViewById(R.id.button_facile);
+        buttondifficile = (Button) findViewById(R.id.button_difficile);
+        buttonexpert = (Button) findViewById(R.id.button_expert);
+
         //CLICK DU BOUTON FACILE
         buttonfacile.setOnClickListener(new View.OnClickListener(){
                 @Override
                 public void onClick(View v) {
-
+                    mode = 1;
                     Intent ActivityJeux = new Intent(MainActivity.this, GameActivity.class);
+                    ActivityJeux.putExtra("valmode", mode);
                     startActivity(ActivityJeux);
                 }
             });
+
+        //CLICK DU BOUTON DIFFICILE
+        buttondifficile.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                mode = 1.5;
+                Intent ActivityJeux = new Intent(MainActivity.this, GameActivity.class);
+                ActivityJeux.putExtra("valmode", mode);
+                startActivity(ActivityJeux);
+            }
+        });
+
+        //CLICK DU BOUTON EXPERT
+        buttonexpert.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                mode = 3;
+                Intent ActivityJeux = new Intent(MainActivity.this, GameActivity.class);
+                ActivityJeux.putExtra("valmode", mode);
+                startActivity(ActivityJeux);
+            }
+        });
     }
 }
