@@ -111,9 +111,9 @@ public class GameActivity extends AppCompatActivity {
         if(etape>=nbtour-1 && incr==etape && etape!=0)
         {
             if(vie<viemax)
-                gametext.setText("\t\t\t\t\t\t\t\tTu as gagné !"+"\n\nClique sur démarrer pour rejouer.");
+                gametext.setText(R.string.gagner);
             else
-                gametext.setText("\t\t\t\t\t\t\t\tTu as perdu."+"\n\nClique sur démarrer pour rejouer.");
+                gametext.setText(R.string.perdre);
         }
         else if(val == sequence.charAt(incr) && vie<viemax)
         {
@@ -122,10 +122,10 @@ public class GameActivity extends AppCompatActivity {
             System.out.println("incr ="+incr+" ,etape ="+etape);
 
             if(etape>=nbtour)
-                gametext.setText("\t\t\t\t\t\t\t\tTu as gagné !"+"\n\nClique sur démarrer pour rejouer.");
+                gametext.setText(R.string.gagner);
             else
             {
-                gametext.setText("Bien joué ! Continues");
+                gametext.setText(R.string.bienjoué);
                 if(incr==etape && etape <nbtour-1)
                 {
                     incr=0;
@@ -153,12 +153,12 @@ public class GameActivity extends AppCompatActivity {
 
             if(vie==viemax && etape <nbtour)
             {
-                gametext.setText("\t\t\t\t\t\t\t\tTu as perdu."+"\n\nClique sur démarrer pour rejouer.");
+                gametext.setText(R.string.perdre);
                 deuxcoeur.setColorFilter(filter);
             }else if(etape <nbtour)
             {
                 incr=0;
-                gametext.setText("Raté ! -"+vie+" vie");
+                gametext.setText(R.string.raté);
                 uncoeur.setColorFilter(filter);
                 ControleSequence(etape);
             }else
@@ -209,7 +209,7 @@ public class GameActivity extends AppCompatActivity {
 
     private void ControleSequence(int j){
         Handler handler = new Handler();
-        gametext.setText("Retiens bien l'ordre d'allumage !");
+        gametext.setText(R.string.allumage);
         for (int i=0;i<j+1;i++)
         {
             int finalI = i;
@@ -226,7 +226,7 @@ public class GameActivity extends AppCompatActivity {
                         @Override
                         public void run(){
                             Visibility(finalI, 255);
-                            if(finalI ==etape)gametext.setText("A toi de jouer !");
+                            if(finalI ==etape)gametext.setText(R.string.jouer);
                         }
                     },(finalI +1)*1000);
                 }

@@ -29,4 +29,10 @@
     <string name="btninscrire">S\'inscrire</string>
     <string name="return_connect">Retour à la connection</string>
     <string name="jouer_sans_se_connecter">Jouer sans se connecter</string>
+    <string name="gagner">Tu as gagné ! Clique sur démarrer pour rejouer.</string>
+    <string name="perdre">Tu as perdu. Clique sur démarrer pour rejouer.</string>
+    <string name="raté">Raté !</string>
+    <string name="allumage">"Retiens bien l'ordre d'allumage !"</string>
+    <string name="jouer">"A toi de jouer !"</string>
+    <string name="bienjoué">"Bien joué ! Continues"</string>
 </resources>
