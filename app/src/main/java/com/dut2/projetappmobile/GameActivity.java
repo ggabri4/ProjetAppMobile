@@ -86,6 +86,7 @@ public class GameActivity extends AppCompatActivity {
                 deuxcoeur.clearColorFilter();
                 if(mode==1.0)
                 {
+                    etape=0;
                     nbtour = 10;
                 }
                 else if(mode==1.5)
@@ -95,7 +96,7 @@ public class GameActivity extends AppCompatActivity {
                 }
                 else if(mode==3.0)
                 {
-                    etape=5;
+                    etape=4;
                     nbtour=20;
                 }
                 String chars = "1234";
