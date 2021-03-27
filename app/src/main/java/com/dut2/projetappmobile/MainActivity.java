@@ -25,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
         Button buttonfacile = (Button) findViewById(R.id.button_facile);
         Button buttondifficile = (Button) findViewById(R.id.button_difficile);
         Button buttonexpert = (Button) findViewById(R.id.button_expert);
+        Button buttonregle = (Button) findViewById(R.id.button_regle);
 
         //CLICK DU BOUTON FACILE
         buttonfacile.setOnClickListener(v -> {
@@ -48,6 +49,11 @@ public class MainActivity extends AppCompatActivity {
             Intent ActivityJeux = new Intent(MainActivity.this, GameActivity.class);
             ActivityJeux.putExtra("valmode", mode);
             startActivity(ActivityJeux);
+        });
+        //CLICK DU BOUTON REGLE
+        buttonregle.setOnClickListener(v -> {
+            Intent ActivityRegles = new Intent(MainActivity.this, ActivityRegle.class);
+            startActivity(ActivityRegles);
         });
     }
 }
