@@ -1,16 +1,10 @@
 package com.dut2.projetappmobile;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -26,6 +20,8 @@ public class MainActivity extends AppCompatActivity {
         Button buttondifficile = (Button) findViewById(R.id.button_difficile);
         Button buttonexpert = (Button) findViewById(R.id.button_expert);
         Button buttonregle = (Button) findViewById(R.id.button_regle);
+        Button buttonconnection = findViewById(R.id.button_connecter);
+        Button buttoninscrire = findViewById(R.id.button_inscrire);
 
         //CLICK DU BOUTON FACILE
         buttonfacile.setOnClickListener(v -> {
@@ -54,6 +50,16 @@ public class MainActivity extends AppCompatActivity {
         buttonregle.setOnClickListener(v -> {
             Intent ActivityRegles = new Intent(MainActivity.this, ActivityRegle.class);
             startActivity(ActivityRegles);
+        });
+        //CLICK DU BOUTON CONNECTION
+        buttonconnection.setOnClickListener(v -> {
+            Intent ActivityConnection = new Intent(MainActivity.this, Connection.class);
+            startActivity(ActivityConnection);
+        });
+        //CLICK DU BOUTON S'INSCRIRE
+        buttoninscrire.setOnClickListener(v -> {
+            Intent ActivityInscrire = new Intent(MainActivity.this, Inscription.class);
+            startActivity(ActivityInscrire);
         });
     }
 }

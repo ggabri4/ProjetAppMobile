@@ -42,4 +42,8 @@
     <string name="regle1">Les quatres boutons devant toi vont s&#8217;allumer chacun leur tour dans un ordre précis, il te suffira de cliquer sur les boutons en suivant cette ordre pour gagner la partie</string>
     <string name="regle2">Attention, ce n&#8217;est pas si simple, le nombre de boutons allumés augmente progressivement et cela devient vite compliqué !</string>
     <string name="regle3">Pour finir, les modes les plus compliqués rapportent plus de points, donc choisis bien ton mode pour privilégié soit la facilité soit les points de score.</string>
+    <string name="s_inscrire">S\'inscrire</string>
+    <string name="se_connecter">Se connecter</string>
+    <string name="retourner_au_jeu">Retourner au jeu</string>
+    <string name="todo">TODO</string>
 </resources>

@@ -15,8 +15,7 @@ import java.net.ConnectException;
 
 public class Connection extends AppCompatActivity {
     EditText email, pass;
-    Button connect;
-    ImageButton inscription;
+    Button connect, inscription;
     SQLiteHelper db;
 
     @Override
@@ -29,6 +28,8 @@ public class Connection extends AppCompatActivity {
         connect= findViewById(R.id.connection);
         inscription= findViewById(R.id.inscription);
         db= new SQLiteHelper(getApplicationContext());
+
+
 
         connect.setOnClickListener(new View.OnClickListener() {
             @Override
